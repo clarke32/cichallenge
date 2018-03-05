@@ -6,11 +6,13 @@ pipeline {
             sh 'docker build -t clarke32/cichallenge:latest .'
         }
       }
-      stage('App'){
+      stage ('publish'){
         steps{
-            sh 'npm install'
-            sh 'npm start'
+        withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+      sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+      sh 'docker push clarke32:latest'
         }
-      }        
+      }
+    }
     }
 }
