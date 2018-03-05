@@ -6,7 +6,7 @@ pipeline {
             sh 'docker build -t clarke32/cichallenge:latest .'
         }
       }
-      stage ('publish'){
+      stage ('Publish'){
         steps{
         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
       sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
