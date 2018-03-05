@@ -3,7 +3,7 @@ pipeline {
     stages {
       stage ('Build Docker'){
         steps {
-            sh 'build docker -t clarke32/cichallenge:latest .'
+            sh 'docker build -t clarke32/cichallenge:latest .'
         }
       }
     }
