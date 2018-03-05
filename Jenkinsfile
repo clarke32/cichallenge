@@ -2,19 +2,9 @@ pipeline {
     agent any
     stages {
       stage ('Build Docker'){
-        steps{
+        steps {
             sh 'build docker -t clarke32/cichallenge:latest .'
         }
       }
-        stage('Example') {
-            steps {
-                sh 'echo "Hello World!"'
-            }
-        }
-        stage('Deliver'){
-          steps{
-              input message: 'Finished using the web site? (Click "Proceed" to continue)'
-          }
-        }
     }
 }
