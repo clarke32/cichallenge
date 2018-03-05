@@ -6,6 +6,11 @@ pipeline {
             sh 'docker build -t anfelipe32/cichallenge:latest .'
         }
       }
+      stage ('Test'){
+        steps {
+          sh 'npm test'
+        }
+      }
       stage ('Publish'){
         steps{
         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
