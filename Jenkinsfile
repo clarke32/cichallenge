@@ -8,22 +8,13 @@ pipeline {
         }
         stage ('Build'){
             steps {
-                 sh 'npm install'
+                 sh 'sudo npm install'
              }
         }
         stage('Test'){
             steps{
-              sh 'npm test'
+              sh 'sudo npm test'
             }
-        }
-        stage('Docker Push') {
-          agent any
-          steps {
-            withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-            sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-            sh 'docker push shanem/spring-petclinic:latest'
-            }
-          }
         }
         stage('Deliver'){
           steps{
