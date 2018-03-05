@@ -1,6 +1,11 @@
 pipeline {
-    agent { dockerfile true }
+    agent none
     stages {
+      stage ('Build Docker'){
+        steps{
+            sh 'build docker -t clarke32/cichallenge:latest .'
+        }
+      }
         stage('Example') {
             steps {
                 sh 'echo "Hello World!"'
